@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Acme Widgets — Q2 Invoice</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 20mm;
+      @bottom-right {
+        content: "Page " counter(page) " / " counter(pages);
+        font-size: 9pt;
+        color: #888;
+      }
+    }
+
+    body {
+      font-family: "DejaVu Sans", sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      line-height: 1.45;
+    }
+
+    h1 { font-size: 20pt; margin: 0 0 4mm; break-after: avoid; }
+    h2 { font-size: 13pt; margin: 8mm 0 3mm; break-after: avoid; }
+
+    .meta {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5mm 6mm;
+      margin-bottom: 6mm;
+      break-inside: avoid;
+    }
+    .meta p { margin: 1mm 0; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 2mm; }
+    th, td { border: 1px solid #ccc; padding: 2mm 3mm; text-align: left; }
+    thead th { background: #f3f3f3; }
+    td.num, th.num { text-align: right; }
+    tr.total td { font-weight: bold; background: #fafafa; }
+
+    ul { margin: 2mm 0; padding-left: 6mm; }
+  </style>
+</head>
+<body>
+  <h1>Acme Widgets — Q2 Invoice</h1>
+
+  <div class="meta">
+    <p><strong>Invoice #</strong> 2026-0042</p>
+    <p><strong>Date:</strong> 2026-06-29</p>
+    <p><strong>Bill to:</strong> Globex Corp</p>
+  </div>
+
+  <h2>Summary</h2>
+  <p>Thanks for your business this quarter. Details below.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th class="num">Qty</th>
+        <th class="num">Unit</th>
+        <th class="num">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Standard widget</td><td class="num">10</td><td class="num">&pound;4.50</td><td class="num">&pound;45.00</td></tr>
+      <tr><td>Deluxe widget</td><td class="num">3</td><td class="num">&pound;9.00</td><td class="num">&pound;27.00</td></tr>
+      <tr><td>Shipping</td><td class="num">1</td><td class="num">&pound;6.00</td><td class="num">&pound;6.00</td></tr>
+      <tr class="total"><td>Total</td><td class="num"></td><td class="num"></td><td class="num">&pound;78.00</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Notes</h2>
+  <ul>
+    <li>Payment due within 30 days.</li>
+    <li>Questions? hello@acme.example</li>
+  </ul>
+</body>
+</html>

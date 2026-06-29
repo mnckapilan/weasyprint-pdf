@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Document Title</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 20mm;
+      @bottom-right {
+        content: "Page " counter(page) " / " counter(pages);
+        font-size: 9pt;
+        color: #888;
+      }
+    }
+
+    body {
+      font-family: "DejaVu Sans", sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      line-height: 1.45;
+    }
+
+    h1 { font-size: 20pt; margin: 0 0 4mm; break-after: avoid; }
+    h2 { font-size: 14pt; margin: 8mm 0 3mm; break-after: avoid; }
+
+    /* card depth via border (box-shadow is unsupported in WeasyPrint) */
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 6mm;
+      margin-bottom: 5mm;
+      break-inside: avoid;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 2mm 3mm; text-align: left; }
+    thead th { background: #f3f3f3; } /* repeats automatically across page breaks */
+
+    /* Browser-preview only — WeasyPrint ignores @media screen, so this never
+       affects the PDF. Simulates an A4 sheet so previewing in a browser feels
+       like the printed page. (Page numbers/margin boxes still only show in PDF.) */
+    @media screen {
+      html { background: #e9e9ee; }
+      body {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 12mm auto;
+        padding: 18mm 20mm;          /* mirror the @page margin */
+        background: #fff;
+        box-sizing: border-box;
+        border: 1px solid #ccc;       /* subtle sheet edge (no box-shadow needed) */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Document Title</h1>
+
+  <div class="card">
+    <h2>Section</h2>
+    <p>Body content goes here.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Example</td><td>&pound;10.00</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>
