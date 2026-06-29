@@ -186,6 +186,34 @@ When a desired effect maps to a forbidden property, substitute:
   for layout-critical images.
 - Embed images as data URIs when you need a fully self-contained single HTML file.
 
+### Icons
+
+There is no JavaScript, so any icon toolkit that swaps in glyphs at runtime (e.g. Font
+Awesome's default JS/SVG mode) will **not** render. Three options, most to least reliable:
+
+1. **Inline SVG — strongly preferred.** Rendered as true vectors, recolorable, no extra
+   assets. Use `fill="currentColor"` so the icon inherits the surrounding text color.
+   ```html
+   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+     <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+   </svg>
+   ```
+   `<img src="icons/check.svg">` also works but can't be recolored via CSS. Grab single SVGs
+   (no runtime/pack needed) from MIT-licensed sets:
+   [Lucide](https://lucide.dev), [Heroicons](https://heroicons.com),
+   [Tabler Icons](https://tabler.io/icons), [Feather](https://feathericons.com),
+   [Bootstrap Icons](https://icons.getbootstrap.com), or
+   [Material Symbols](https://fonts.google.com/icons) (download SVG, not the font).
+
+2. **Icon fonts (Font Awesome etc.)** — work, but use the *webfont CSS* mode, not the JS mode,
+   embed a **local TTF/OTF** (not WOFF/WOFF2, see §6), and **strip `?v=...` query strings** from
+   `@font-face` `src:` URLs — WeasyPrint treats `?...` as part of the filename and the glyphs
+   silently vanish (the #1 "missing icons" cause). Reference glyphs by codepoint
+   (`<i class="fa-solid">&#xf00c;</i>`) so you needn't ship the full FA stylesheet.
+
+3. **Unicode/emoji** — plain glyphs render if a font covers them; **color emoji are
+   inconsistent** across versions — fall back to SVG when color matters.
+
 ---
 
 ## 8. Colors & print considerations

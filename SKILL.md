@@ -44,6 +44,9 @@ support, and gaps in some modern screen CSS. Generate for paper, not a scrolling
   machine that lacks the font, or the user supplies a brand font in `assets/`.
 - **Assets:** prefer **SVG** for line art (it stays crisp as true vector). Inline fonts/images
   as data URIs only when a single fully-portable file is required.
+- **Icons:** prefer **inline SVG** with `fill="currentColor"` (no JS, so runtime icon toolkits
+  fail) — grab single files from Lucide / Heroicons / Tabler. Icon fonts work only as a local
+  TTF webfont with no `?v=` query string. See references/ruleset.md §7.
 
 ### Never emit (silently dropped or unsupported)
 
